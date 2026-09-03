@@ -1,6 +1,6 @@
-public class Recovered extends Infected{
-    public Recovered(String name, int age, Virus virus){
-        super(name, age, virus);
+public class Recovered extends Person{
+    public Recovered(String name, int age){
+        super(name, age);
     }
 
     @Override
