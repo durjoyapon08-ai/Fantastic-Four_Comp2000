@@ -16,6 +16,10 @@ public class Virus {
         return spreadPercentage;
     }
 
+    public void setSpreadPercentage(int spreadPercentage) {
+        this.spreadPercentage = spreadPercentage;
+    }
+
     @Override
     public String toString(){
         return virusName + "-" + spreadPercentage + "%";
