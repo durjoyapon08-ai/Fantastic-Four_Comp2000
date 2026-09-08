@@ -14,7 +14,7 @@ public class SimulationPanel extends Panel implements Runnable {
 
     public SimulationPanel() {
 
-        setBackground(Color.GRAY);
+        setBackground(Color.WHITE);
 
 
         people = new ArrayList<>();
