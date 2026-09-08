@@ -1,11 +1,14 @@
-<img width="2048" height="1365" alt="messi" src="https://github.com/user-attachments/assets/e29cd8b3-82b4-4d9c-b7a5-55a77f389847" />
-# Fantastic-Four-Week2
-This is our first Git repository for week 1 Epic Activity in comp2000.
+The simulation shows how an epidemic spreads through a moving population.
 
+Green = Healthy
+Red = Infected
+Blue = Recovered
+Black = Dead
 
-Our group has four members.
+People move randomly around the window. When an infected person gets close to a healthy person, there is a 40% chance the healthy person becomes infected.
 
-1. Durjoy Paul Apon
-2. Shoumik Ghosh
-3. Aurpan Pal
-4. Charlie 
+Three Recovery Tents appear at random locations every 5 seconds. An infected person must stay inside one for 2 seconds to recover.
+
+One Hospital appears randomly every 15 seconds and stays for 3 seconds. An infected person must stay inside it for 1 second to recover.
+
+If an infected person stays infected for about 50 seconds, they die, turn black, and stop moving. Recovered people cannot infect others and cannot become infected again.

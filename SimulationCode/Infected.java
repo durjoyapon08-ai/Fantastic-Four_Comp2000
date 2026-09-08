@@ -2,6 +2,8 @@ public class Infected extends Person{
 
     private Virus virus;
     private int infectionDuration;
+    private long tentEntryTime = -1;
+    private long hospitalEntryTime = -1;
 
     public Infected(String name, int age, Virus virus, float x, float y, 
         float speedX, float speedY){
@@ -24,18 +26,22 @@ public class Infected extends Person{
         return infectionDuration;
     }
 
-    // public Person checkCondition(){
-    //     int percentage = virus.getSpreadPercentage();
+    public long getTentEntryTime() {
+    return tentEntryTime;
+}
 
-    //     if(percentage <= 20){
-    //         return new Recovered(getName(), getAge(), virus);
-    //     }
-    //     else if (percentage > 70) {
-    //         return new Dead(getName(), getAge(), virus);
-    //     } else {
-    //         return this;
-    //     }
-    // }
+    public void setTentEntryTime(long time) {
+    tentEntryTime = time;
+}
+
+
+    public long getHospitalEntryTime() {
+    return hospitalEntryTime;
+}
+
+    public void setHospitalEntryTime(long time) {
+    hospitalEntryTime = time;
+}
 
     @Override
     public String getStatus() {
