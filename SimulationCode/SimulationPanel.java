@@ -26,35 +26,36 @@ public class SimulationPanel extends Panel implements Runnable {
         );
 
 
-        // Create 30 healthy people
+        // Create 50 healthy people
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 50; i++) {
 
             Healthy healthyPerson =
                 new Healthy(
                     "Person " + i,
                     20,
-                    100,
-                    100,
-                    2,
-                    2
+                (float)(Math.random() * 750),
+                (float)(Math.random() * 500),
+                (float)(Math.random() * 4 - 2),
+                (float)(Math.random() * 4 - 2)
                 );
 
             people.add(healthyPerson);
         }
 
 
-        // Create 3 infected people
+        // Create 2 infected people
 
         people.add(
             new Infected(
                 "Infected 1",
                 25,
                 virus,
-                100,
-                100,
-                2,
-                2
+
+                (float)(Math.random() * 750),
+                (float)(Math.random() * 500),
+                (float)(Math.random() * 4 - 2),
+                (float)(Math.random() * 4 - 2)
             )
         );
 
@@ -64,25 +65,25 @@ public class SimulationPanel extends Panel implements Runnable {
                 "Infected 2",
                 30,
                 virus,
-                150,
-                150,
-                2,
-                2
+                (float)(Math.random() * 750),
+                (float)(Math.random() * 500),
+                (float)(Math.random() * 4 - 2),
+                (float)(Math.random() * 4 - 2)
             )
         );
 
 
-        people.add(
-            new Infected(
-                "Infected 3",
-                22,
-                virus,
-                200,
-                200,
-                2,
-                2
-            )
-        );
+        // people.add(
+        //     new Infected(
+        //         "Infected 3",
+        //         22,
+        //         virus,
+        //         (float)(Math.random() * 750),
+        //         (float)(Math.random() * 500),
+        //         (float)(Math.random() * 4 - 2),
+        //         (float)(Math.random() * 4 - 2)
+        //     )
+        // );
     }
 
 
@@ -173,8 +174,8 @@ public class SimulationPanel extends Panel implements Runnable {
                                     virus,
                                     person2.getX(),
                                     person2.getY(),
-                                    2,
-                                    2
+                                    person2.getSpeedX(),
+                                    person2.getSpeedY()
                                 );
 
                             people.set(

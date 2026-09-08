@@ -38,6 +38,14 @@ public class Person {
         return y;   
     }    
 
+    public float getSpeedX() {
+        return speedX;
+    }
+
+    public float getSpeedY() {
+        return speedY;
+    }
+
     public void move(int width, int height) {
         
         x += speedX;
