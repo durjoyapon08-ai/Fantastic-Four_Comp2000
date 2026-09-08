@@ -1,4 +1,5 @@
 public class Person {
+
     private String name;
     private int age;
 
@@ -7,17 +8,18 @@ public class Person {
     private float speedX;
     private float speedY;
 
-    public Person(String name, int age){
+    public Person(String name, int age, float x, float y, 
+        float speedX, float speedY) {
+
         this.name = name;
         this.age = age;
 
-        // Random starting position
-        x = (float)(Math.random() * 750);
-        y = (float)(Math.random() * 500);
+        this.x = x;
+        this.y = y;
 
-        // Random movement speed
-        speedX = (float)(Math.random() * 4 - 2);
-        speedY = (float)(Math.random() * 4 - 2);
+        this.speedX = speedX;
+        this.speedY = speedY;
+    
     }
 
     public String getName() {
@@ -37,16 +39,14 @@ public class Person {
     }    
 
     public void move(int width, int height) {
+        
         x += speedX;
         y += speedY;
 
-        // Bounce from left/right wall
-        if (x <= 0 || x >= width - 15) {
+        if(x < 0 || x > width - 15){
             speedX *= -1;
         }
-
-        // Bounce from top/bottom wall
-        if (y <= 0 || y >= height - 15) {
+        if(y < 0 || y > height - 15){
             speedY *= -1;
         }
     }

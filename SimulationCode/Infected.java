@@ -1,9 +1,13 @@
 public class Infected extends Person{
+
     private Virus virus;
     private int infectionDuration;
 
-    public Infected(String name, int age, Virus virus){
-        super(name, age);
+    public Infected(String name, int age, Virus virus, float x, float y, 
+        float speedX, float speedY){
+
+        super(name, age, x, y, speedX, speedY);
+
         this.virus = virus;
         this.infectionDuration = 0;
     }
