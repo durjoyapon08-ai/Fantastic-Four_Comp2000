@@ -188,7 +188,48 @@ public class SimulationPanel extends Panel implements Runnable {
             }
         }
     }
+
+    for (int i = 0; i < people.size(); i++) {
+
+        Person person = people.get(i);
+
+        if (
+            person instanceof Infected
+            && !(person instanceof Dead)
+            && !(person instanceof Recovered)
+        ) {
+
+            Infected infectedPerson =
+                (Infected) person;
+
+            infectedPerson.increaseInfectionDuration();
+
+
+            if (
+                infectedPerson.getInfectionDuration()
+                >= 1667
+            ) {
+
+                Dead deadPerson =
+                    new Dead(
+                        infectedPerson.getName(),
+                        infectedPerson.getAge(),
+                        infectedPerson.getVirus(),
+                        infectedPerson.getX(),
+                        infectedPerson.getY(),
+                        0,
+                        0
+                    );
+
+                people.set(
+                    i,
+                    deadPerson
+                );
+            }
+        }
+    }
 }
+
 
 
     @Override
