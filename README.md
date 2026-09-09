@@ -1,83 +1,51 @@
 # Epidemic Spread Simulation
 
-This is a Java project for COMP2000.
+This project is a simple Java-based Epidemic Spread Simulation developed for COMP2000. The main goal of the project is to demonstrate how an infection can spread through a moving population while using Object-Oriented Programming concepts.
 
-The program checks a person's health condition based on a zombie virus percentage.
+The simulation contains a fixed population of 100 people, with a small number of people starting as infected. Each person moves randomly around the simulation area. When an infected person comes very close to a healthy person, there is a chance that the healthy person will become infected.
 
-## How the Program Works
+Age also affects the infection risk. People over 50 have a higher chance of becoming infected, while people under 30 have a lower chance and need repeated close contact before infection is more likely to occur.
 
-The user enters:
+The simulation also includes Recovery Tents and a Hospital. Infected people can recover by staying inside these areas for a certain amount of time. Some infected people can also recover naturally. Recovered people are shown separately before eventually becoming healthy again. If an infected person does not recover for a long period of time, they may die.
 
-- Name
-- Age
-- Whether the person is infected
-- Virus percentage
+The program displays live statistics showing the number and percentage of Healthy, Infected, Recovered, and Dead people.
 
-The result is:
+## Color Guide
 
-- 0–20% → Recovered
-- 21–70% → Infected
-- Above 70% → Dead
-- Not infected → Healthy
-
-The program can store up to 15 people.
-
-## Main Classes
-
-### Person
-Stores basic information such as:
-- ID
-- Name
-- Age
-- Position
-
-### Healthy
-Represents a healthy person.
-
-### Infected
-Represents an infected person and checks the virus percentage.
-
-### Recovered
-Represents a recovered person.
-
-### Dead
-Represents a dead person.
-
-### Virus
-Stores the virus name and percentage.
-
-### Main
-Runs the program, takes user input, and stores all people.
+- Green = Healthy
+- Red = Infected
+- Blue = Recovered
+- Black = Dead
+- Orange = Recovery Tent
+- White = Hospital
 
 ## OOP Concepts Used
 
-This project uses:
+This project demonstrates several Object-Oriented Programming concepts:
 
-- Inheritance
-- Method overriding
-- Encapsulation
-- Polymorphism
-- Generics
-- Exception handling
+- **Inheritance** – Healthy, Infected, Recovered, and Dead inherit from the Person class.
+- **Encapsulation** – Person and other classes use private fields with public getter methods.
+- **Polymorphism** – Different Person subclasses override methods such as `getStatus()`.
+- **Generics** – `ArrayList<Person>` and `ArrayList<RecoveryTent>` are used to manage objects.
+- **Exception Handling** – `InterruptedException` is handled in the simulation thread.
 
-For example, `Healthy`, `Infected`, `Recovered`, and `Dead` all extend the `Person` class.
+## Main Classes
 
-## Exception Handling
+- `Main` – Starts the program and opens the simulation window.
+- `SimulationPanel` – Controls movement, infection, recovery, buildings, statistics, and drawing.
+- `Person` – Parent class for all people in the simulation.
+- `Healthy` – Represents a healthy person.
+- `Infected` – Represents an infected person.
+- `Recovered` – Represents a recovered person.
+- `Dead` – Represents a dead person.
+- `Virus` – Stores virus information and infection rate.
+- `Building` – Parent class for treatment buildings.
+- `Hospital` – Helps infected people recover.
+- `RecoveryTent` – Provides another recovery area.
 
-The program uses `try-catch` when the user enters a number.
+## How to Run
 
-If the user enters something invalid, the program shows an error message and asks again.
-
-## How to Run in VS Code
-
-1. Open the project folder in VS Code.
-2. Open `Main.java`.
-3. Click **Run**.
-4. Enter the information in the terminal.
-5. The program will show the patient's result.
-
-You can also run it from the terminal:
+Compile all Java files:
 
 ```bash
 javac *.java
-java Main

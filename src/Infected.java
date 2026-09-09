@@ -1,48 +1,65 @@
-public class Infected extends Person{
+public class Infected extends Person {
+
     private Virus virus;
+     private long infectedSince;
+    private long tentEntryTime = -1;
+    private long hospitalEntryTime = -1;
 
     public Infected(
-        String name, 
-        int age, 
-        int x,
-        int y,
-        Virus virus){
-            super(name, age, x, y);
-            this.virus = virus;
-        }
+            String name,
+            int age,
+            Virus virus,
+            float x,
+            float y,
+            float speedX,
+            float speedY) {
 
-        public Infected( int id, String name, int age, int x, int y, Virus virus){
-            super(id, name, age, x, y);
-            this.virus = virus;
-        }
-        public Virus getVirus(){
-            return virus;
-        }
+        super(name, age, x, y, speedX, speedY);
+    this.virus = virus;
+        infectedSince = System.currentTimeMillis();
+    }
 
-public Person checkCondition() {
+    public Infected(
+            int id,
+            String name,
+            int age,
+            Virus virus,
+            float x,
+            float y,
+            float speedX,
+            float speedY) {
 
-        int percentage = virus.getSpreadPercentage();
+        super(id, name, age, x, y, speedX, speedY);
+     this.virus = virus;
+        infectedSince = System.currentTimeMillis();
+    }
 
-        if (percentage <= 20) {
+    public Virus getVirus() {
+        return virus;
+    }
 
-            return new Recovered(getId(),getName(),getAge(),getX(),getY());
-        }
+    public long getInfectedSince() {
+        return infectedSince;
+    }
 
-        if (percentage > 70) {
-            return new Dead(getId(),getName(),getAge(),getX(),getY());
-        }
+    public long getTentEntryTime() {
+        return tentEntryTime;
+    }
 
-        return this;
+    public void setTentEntryTime(long time) {
+        tentEntryTime = time;
+    }
+
+    public long getHospitalEntryTime() {
+        return hospitalEntryTime;
+    }
+
+    public void setHospitalEntryTime(long time) {
+        hospitalEntryTime = time;
     }
 
     @Override
     public String getStatus() {
         return "Infected";
     }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Virus: " + virus;
-    }
 }
-        
