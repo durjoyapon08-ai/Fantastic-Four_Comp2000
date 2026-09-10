@@ -1,9 +1,5 @@
 # Epidemic Spread Simulation
 
-Green = Healthy
-Red = Infected
-Blue = Recovered
-Black = Dead
 
 ## Project Overview
 
