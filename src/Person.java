@@ -1,6 +1,9 @@
 public abstract class Person {
 
-    // Used to automatically assign an ID to each new person.
+    static final int DIAMETER = 15;
+    private static final int PLAY_AREA_TOP = 150;
+
+    // Used to assign an ID to each new person.
     private static int nextId = 1;
 
     private int id;
@@ -21,20 +24,18 @@ public abstract class Person {
             float speedX,
             float speedY) {
 
-        // Validate before assigning an ID or storing the data.
         validateDetails(name, age);
 
         this.id = nextId++;
         this.name = name.trim();
         this.age = age;
-
         this.x = x;
         this.y = y;
         this.speedX = speedX;
         this.speedY = speedY;
     }
 
-    // Creates a person while preserving an existing ID.
+    // Preserves the person's ID when their health status changes.
     public Person(
             int id,
             String name,
@@ -49,16 +50,14 @@ public abstract class Person {
         this.id = id;
         this.name = name.trim();
         this.age = age;
-
         this.x = x;
         this.y = y;
         this.speedX = speedX;
         this.speedY = speedY;
     }
 
-    // Both constructors share the same name and age rules.
+    // Both constructors use the same validation rules.
     private static void validateDetails(String name, int age) {
-
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException(
                     "Person name cannot be empty."
@@ -100,18 +99,33 @@ public abstract class Person {
         return speedY;
     }
 
-    // Moves the person and reverses direction at a boundary.
+    // Keeps the person inside the play area and turns them back at the edges.
     public void move(int width, int height) {
+        int right = Math.max(0, width - DIAMETER);
+        int bottom = Math.max(0, height - DIAMETER);
+        int top = Math.min(PLAY_AREA_TOP, bottom);
 
-        x += speedX;
-        y += speedY;
+        float nextX = x + speedX;
+        float nextY = y + speedY;
 
-        if (x < 0 || x > width - 15) {
-            speedX *= -1;
+        // Clamp the position, including when the window is resized.
+        x = Math.max(0, Math.min(nextX, right));
+        y = Math.max(top, Math.min(nextY, bottom));
+
+        if (right > 0) {
+            if (nextX <= 0) {
+                speedX = Math.abs(speedX);
+            } else if (nextX >= right) {
+                speedX = -Math.abs(speedX);
+            }
         }
 
-        if (y < 150 || y > height - 15) {
-            speedY *= -1;
+        if (bottom > top) {
+            if (nextY <= top) {
+                speedY = Math.abs(speedY);
+            } else if (nextY >= bottom) {
+                speedY = -Math.abs(speedY);
+            }
         }
     }
 
