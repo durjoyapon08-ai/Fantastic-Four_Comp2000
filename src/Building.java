@@ -1,42 +1,51 @@
 public abstract class Building {
 
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
 
-    public Building(int x,int y,int width,int height) {
+    // Validates the position and size before creating a building.
+    public Building(int x, int y, int width, int height) {
+        if (x < 0 || y < 0) {
+            throw new IllegalArgumentException(
+                    "Building coordinates cannot be negative."
+            );
+        }
+
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException(
+                    "Building width and height must be positive."
+            );
+        }
 
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
-    
-    // Horizontal Position
+
     public int getX() {
         return x;
     }
-    
-    // Vertical Position 
+
     public int getY() {
         return y;
     }
 
-    // Width
     public int getWidth() {
         return width;
     }
-    
-    // Height
+
     public int getHeight() {
         return height;
     }
-    
-    
-    // Checks whether a person is currently inside the building area
-    public boolean isPersonInside(Person person) {
 
-        return person.getX() >= x && person.getX() <= x + width && person.getY() >= y && person.getY() <= y + height;
+    // A person on the edge of the building also counts as inside.
+    public boolean isPersonInside(Person person) {
+        return person.getX() >= x
+                && person.getX() <= x + width
+                && person.getY() >= y
+                && person.getY() <= y + height;
     }
 }
